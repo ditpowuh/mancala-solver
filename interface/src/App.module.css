@@ -1,0 +1,52 @@
+.content {
+  text-align: center;
+  color: #ffffff;
+  margin: 2em 0;
+}
+
+.content > h1 {
+  font-size: 4em;
+}
+
+.content .board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.playerindicator, .opponentindicator {
+  color: rgba(0, 0, 0, 0.25);
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 8em;
+  height: 4em;
+  border-radius: 2em;
+}
+
+.playerindicator {
+  background: #87bdff;
+}
+
+.opponentindicator {
+  background: #ff7070;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  margin: 2em 0;
+}
+
+.button {
+  background: #ffffff;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.25em;
+  font-weight: bold;
+  cursor: pointer;
+}
