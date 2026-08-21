@@ -1,16 +1,13 @@
 import styles from "./MancalaBoard.module.css";
-import {useState} from "react";
 import clsx from "clsx";
 
-import {getDefaultBoard} from "@/lib/utility";
-
 interface MancalaBoardProps {
+  board: number[];
+  setBoard: React.Dispatch<React.SetStateAction<number[]>>;
   enableOutline?: boolean;
 }
 
-export default function MancalaBoard({enableOutline = false}: MancalaBoardProps) {
-  const [board, setBoard] = useState<number[]>(getDefaultBoard());
-
+export default function MancalaBoard({board, setBoard, enableOutline = false}: MancalaBoardProps) {
   const changeValue = (event: React.MouseEvent<HTMLDivElement>, pitIndex: number) => {
     if (event.button === 0) {
       if (board[pitIndex] === 99) {

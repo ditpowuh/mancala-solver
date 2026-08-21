@@ -20,9 +20,17 @@ export default defineConfig({
       }
     })
   ],
+  server: {
+    fs: {
+      allow: [
+        path.resolve(import.meta.dirname, "..")
+      ]
+    }
+  },
   resolve: {
     alias: {
-      "@": path.resolve(import.meta.dirname, "./src")
+      "@": path.resolve(import.meta.dirname, "./src"),
+      "@external": path.resolve(import.meta.dirname, "..")
     }
   }
 });
