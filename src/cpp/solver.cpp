@@ -40,7 +40,7 @@ int MancalaSolver::minimax(const MancalaBoard& board, int depth, Player player, 
     return this->evaluate(board, this->solving_player);
   }
 
-  if (player == solving_player) {
+  if (player == this->solving_player) {
     int best_value = std::numeric_limits<int>::min();
     for (const int& move : moves) {
       MancalaBoard next_move_board = MancalaBoard(board);

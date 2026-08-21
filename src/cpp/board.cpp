@@ -69,14 +69,14 @@ void MancalaBoard::collect_final_pits() {
     return;
   }
 
-  int first_player_remaining = std::accumulate(std::next(board.begin(), 0), std::next(board.begin(), 6), 0);
-  int second_player_remaining = std::accumulate(std::next(board.begin(), 7), std::next(board.begin(), 13), 0);
+  int first_player_remaining = std::accumulate(std::next(this->board.begin(), 0), std::next(this->board.begin(), 6), 0);
+  int second_player_remaining = std::accumulate(std::next(this->board.begin(), 7), std::next(this->board.begin(), 13), 0);
 
   this->board[MancalaBoard::FIRST_PLAYER_STORE_INDEX] = this->board[MancalaBoard::FIRST_PLAYER_STORE_INDEX] + first_player_remaining;
   this->board[MancalaBoard::SECOND_PLAYER_STORE_INDEX] = this->board[MancalaBoard::SECOND_PLAYER_STORE_INDEX] + second_player_remaining;
 
-  std::fill(std::next(board.begin(), 0), std::next(board.begin(), 6), 0);
-  std::fill(std::next(board.begin(), 7), std::next(board.begin(), 13), 0);
+  std::fill(std::next(this->board.begin(), 0), std::next(this->board.begin(), 6), 0);
+  std::fill(std::next(this->board.begin(), 7), std::next(this->board.begin(), 13), 0);
 }
 
 int MancalaBoard::get_store_of_player(Player player) const {
