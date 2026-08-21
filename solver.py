@@ -21,7 +21,7 @@ class MancalaSolver:
 
         return playerStore - opponentStore
 
-    def minimax(self, board: MancalaBoard, depth: int, playerNumber: int, alpha: int, beta: int):
+    def minimax(self, board: MancalaBoard, depth: int, playerNumber: int, alpha: int, beta: int) -> int:
         if board.checkGameOver():
             finalBoard = board.copy()
             finalBoard.collectFinalPits()
