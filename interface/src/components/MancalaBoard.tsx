@@ -1,9 +1,11 @@
 import styles from "./MancalaBoard.module.css";
 import clsx from "clsx";
 
+import type {Board} from "@/types/board";
+
 interface MancalaBoardProps {
-  board: number[];
-  setBoard: React.Dispatch<React.SetStateAction<number[]>>;
+  board: Board;
+  setBoard: React.Dispatch<React.SetStateAction<Board>>;
   enableOutline?: boolean;
 }
 
@@ -14,7 +16,7 @@ export default function MancalaBoard({board, setBoard, enableOutline = false}: M
         return;
       }
       setBoard((previousBoard) => {
-        return previousBoard.map((seeds, index) => index === pitIndex ? seeds + 1 : seeds)
+        return previousBoard.map((seeds, index) => index === pitIndex ? seeds + 1 : seeds) as Board
       });
     }
     else if (event.button === 2) {
@@ -23,7 +25,7 @@ export default function MancalaBoard({board, setBoard, enableOutline = false}: M
         return;
       }
       setBoard((previousBoard) => {
-        return previousBoard.map((seeds, index) => index === pitIndex ? seeds - 1 : seeds)
+        return previousBoard.map((seeds, index) => index === pitIndex ? seeds - 1 : seeds) as Board
       });
     }
   }

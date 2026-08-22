@@ -1,4 +1,6 @@
-export function getDefaultBoard() {
+import type {Board} from "@/types/board";
+
+export function getDefaultBoard(): Board {
   return Array.from({length: 14}, function (_, index) {
     if (index === 6 || index === 13) {
       return 0;
@@ -6,5 +8,5 @@ export function getDefaultBoard() {
     else {
       return 4;
     }
-  });
+  }) as Board;
 }
