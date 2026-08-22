@@ -27,9 +27,10 @@ jobs:
 
       - name: Move Emscripten WASM output to interface assets
         run: |
-          Move-Item "./src/cpp/mancala.mjs" "./interface/src/assets/WASM/mancala.mjs"
-          Move-Item "./src/cpp/mancala.d.ts" "./interface/src/assets/WASM/mancala.d.ts"
-          Move-Item "./src/cpp/mancala.wasm" "./interface/src/assets/WASM/mancala.wasm"
+          mkdir -p ./interface/src/assets/WASM/
+          mv "./src/cpp/mancala.mjs" "./interface/src/assets/WASM/mancala.mjs"
+          mv "./src/cpp/mancala.d.ts" "./interface/src/assets/WASM/mancala.d.ts"
+          mv "./src/cpp/mancala.wasm" "./interface/src/assets/WASM/mancala.wasm"
 
       - name: Setup Node.JS
         uses: actions/setup-node@v7
