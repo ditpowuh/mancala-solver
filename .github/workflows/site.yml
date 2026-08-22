@@ -1,0 +1,53 @@
+name: Mancala Solver Interface Build & Deploy CD
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "src/cpp/**"
+      - "interface/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Emscripten
+        uses: emscripten-core/setup-emsdk@v16
+        with:
+          version: 6.0.8
+
+      - name: Compile C++ to WASM using Emscripten
+        working-directory: ./src/cpp
+        run: em++ board.cpp solver.cpp bindings.cpp --bind -O3 -sMODULARIZE -sEXPORT_ES6 -o mancala.mjs --emit-tsd mancala.d.ts
+
+      - name: Move Emscripten WASM output to interface assets
+        run: |
+          Move-Item "./src/cpp/mancala.mjs" "./interface/src/assets/WASM/mancala.mjs"
+          Move-Item "./src/cpp/mancala.d.ts" "./interface/src/assets/WASM/mancala.d.ts"
+          Move-Item "./src/cpp/mancala.wasm" "./interface/src/assets/WASM/mancala.wasm"
+
+      - name: Setup Node.JS
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: interface/package-lock.json
+
+      - name: Install interface dependencies
+        working-directory: interface
+        run: npm ci
+
+      - name: Run interface build command
+        working-directory: interface
+        run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy interface/dist --project-name=mancala-solver
