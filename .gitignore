@@ -21,3 +21,7 @@ dist-ssr
 *.sw?
 *.bat
 -*
+**/assets/WASM/
+src/cpp/*.mjs
+src/cpp/*.wasm
+src/cpp/*.ts
