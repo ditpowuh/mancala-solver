@@ -19,7 +19,6 @@
   height: 6rem;
   border-radius: 3rem;
   font-size: 3em;
-  cursor: pointer;
 }
 
 .pits {
@@ -57,7 +56,6 @@
   width: 6rem;
   font-size: 3em;
   border-radius: 50%;
-  cursor: pointer;
 }
 
 .button {

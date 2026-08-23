@@ -32,8 +32,8 @@ export default function MancalaBoard({board, setBoard, enableOutline = false}: M
     <div className={styles.board}>
       <div className={clsx(styles.opponentstore, enableOutline && styles.opponentoutline, "unselectable")}>
         <div>{board[13]}</div>
-        <button className={clsx(styles.button, enableOutline && styles.opponentoutline)} onClick={() => increaseValue(13)}>+</button>
         <button className={clsx(styles.button, enableOutline && styles.opponentoutline)} onClick={() => decreaseValue(13)}>-</button>
+        <button className={clsx(styles.button, enableOutline && styles.opponentoutline)} onClick={() => increaseValue(13)}>+</button>
       </div>
       <div className={styles.pits}>
         <div className={styles.playerpits}>
@@ -43,8 +43,8 @@ export default function MancalaBoard({board, setBoard, enableOutline = false}: M
               return (
                 <div key={`pit-${originalIndex}`} className={clsx(styles.pit, enableOutline && styles.playeroutline, "unselectable")}>
                   <div>{seeds}</div>
-                  <button className={clsx(styles.button, enableOutline && styles.playeroutline)} onClick={() => increaseValue(originalIndex)}>+</button>
                   <button className={clsx(styles.button, enableOutline && styles.playeroutline)} onClick={() => decreaseValue(originalIndex)}>-</button>
+                  <button className={clsx(styles.button, enableOutline && styles.playeroutline)} onClick={() => increaseValue(originalIndex)}>+</button>
                 </div>
               );
             })
@@ -57,8 +57,8 @@ export default function MancalaBoard({board, setBoard, enableOutline = false}: M
               return (
                 <div key={`pit-${originalIndex}`} className={clsx(styles.pit, enableOutline && styles.opponentoutline, "unselectable")}>
                   <div>{seeds}</div>
-                  <button className={clsx(styles.button, enableOutline && styles.opponentoutline)} onClick={() => increaseValue(originalIndex)}>+</button>
                   <button className={clsx(styles.button, enableOutline && styles.opponentoutline)} onClick={() => decreaseValue(originalIndex)}>-</button>
+                  <button className={clsx(styles.button, enableOutline && styles.opponentoutline)} onClick={() => increaseValue(originalIndex)}>+</button>
                 </div>
               );
             })
@@ -67,8 +67,8 @@ export default function MancalaBoard({board, setBoard, enableOutline = false}: M
       </div>
       <div className={clsx(styles.playerstore, enableOutline && styles.playeroutline, "unselectable")}>
         <div>{board[6]}</div>
-        <button className={clsx(styles.button, enableOutline && styles.playeroutline)} onClick={() => increaseValue(6)}>+</button>
         <button className={clsx(styles.button, enableOutline && styles.playeroutline)} onClick={() => decreaseValue(6)}>-</button>
+        <button className={clsx(styles.button, enableOutline && styles.playeroutline)} onClick={() => increaseValue(6)}>+</button>
       </div>
     </div>
   );
