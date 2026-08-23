@@ -10,30 +10,30 @@ interface MancalaBoardProps {
 }
 
 export default function MancalaBoard({board, setBoard, enableOutline = false}: MancalaBoardProps) {
-  const changeValue = (event: React.MouseEvent<HTMLDivElement>, pitIndex: number) => {
-    if (event.button === 0) {
-      if (board[pitIndex] === 99) {
-        return;
-      }
-      setBoard((previousBoard) => {
-        return previousBoard.map((seeds, index) => index === pitIndex ? seeds + 1 : seeds) as Board
-      });
+  const increaseValue = (pitIndex: number) => {
+    if (board[pitIndex] === 99) {
+      return;
     }
-    else if (event.button === 2) {
-      event.preventDefault();
-      if (board[pitIndex] === 0) {
-        return;
-      }
-      setBoard((previousBoard) => {
-        return previousBoard.map((seeds, index) => index === pitIndex ? seeds - 1 : seeds) as Board
-      });
+    setBoard((previousBoard) => {
+      return previousBoard.map((seeds, index) => index === pitIndex ? seeds + 1 : seeds) as Board
+    });
+  }
+
+  const decreaseValue = (pitIndex: number) => {
+    if (board[pitIndex] === 0) {
+      return;
     }
+    setBoard((previousBoard) => {
+      return previousBoard.map((seeds, index) => index === pitIndex ? seeds - 1 : seeds) as Board
+    });
   }
 
   return (
     <div className={styles.board}>
-      <div className={clsx(styles.opponentstore, enableOutline && styles.opponentoutline, "unselectable")} onClick={(event) => changeValue(event, 13)} onContextMenu={(event) => changeValue(event, 13)}>
-        {board[13]}
+      <div className={clsx(styles.opponentstore, enableOutline && styles.opponentoutline, "unselectable")}>
+        <div>{board[13]}</div>
+        <button className={clsx(styles.button, enableOutline && styles.opponentoutline)} onClick={() => increaseValue(13)}>+</button>
+        <button className={clsx(styles.button, enableOutline && styles.opponentoutline)} onClick={() => decreaseValue(13)}>-</button>
       </div>
       <div className={styles.pits}>
         <div className={styles.playerpits}>
@@ -41,8 +41,10 @@ export default function MancalaBoard({board, setBoard, enableOutline = false}: M
             board.slice(0, 6).map((seeds, index) => {
               const originalIndex = index;
               return (
-                <div key={`pit-${originalIndex}`} className={clsx(styles.pit, enableOutline && styles.playeroutline, "unselectable")} onClick={(event) => changeValue(event, originalIndex)} onContextMenu={(event) => changeValue(event, originalIndex)}>
-                  {seeds}
+                <div key={`pit-${originalIndex}`} className={clsx(styles.pit, enableOutline && styles.playeroutline, "unselectable")}>
+                  <div>{seeds}</div>
+                  <button className={clsx(styles.button, enableOutline && styles.playeroutline)} onClick={() => increaseValue(originalIndex)}>+</button>
+                  <button className={clsx(styles.button, enableOutline && styles.playeroutline)} onClick={() => decreaseValue(originalIndex)}>-</button>
                 </div>
               );
             })
@@ -53,16 +55,20 @@ export default function MancalaBoard({board, setBoard, enableOutline = false}: M
             board.slice(7, 13).map((seeds, index) => {
               const originalIndex = index + 7;
               return (
-                <div key={`pit-${originalIndex}`} className={clsx(styles.pit, enableOutline && styles.opponentoutline, "unselectable")} onClick={(event) => changeValue(event, originalIndex)} onContextMenu={(event) => changeValue(event, originalIndex)}>
-                  {seeds}
+                <div key={`pit-${originalIndex}`} className={clsx(styles.pit, enableOutline && styles.opponentoutline, "unselectable")}>
+                  <div>{seeds}</div>
+                  <button className={clsx(styles.button, enableOutline && styles.opponentoutline)} onClick={() => increaseValue(originalIndex)}>+</button>
+                  <button className={clsx(styles.button, enableOutline && styles.opponentoutline)} onClick={() => decreaseValue(originalIndex)}>-</button>
                 </div>
               );
             })
           }
         </div>
       </div>
-      <div className={clsx(styles.playerstore, enableOutline && styles.playeroutline, "unselectable")} onClick={(event) => changeValue(event, 6)} onContextMenu={(event) => changeValue(event, 6)}>
-        {board[6]}
+      <div className={clsx(styles.playerstore, enableOutline && styles.playeroutline, "unselectable")}>
+        <div>{board[6]}</div>
+        <button className={clsx(styles.button, enableOutline && styles.playeroutline)} onClick={() => increaseValue(6)}>+</button>
+        <button className={clsx(styles.button, enableOutline && styles.playeroutline)} onClick={() => decreaseValue(6)}>-</button>
       </div>
     </div>
   );

@@ -43,10 +43,29 @@
 
 .button {
   background: #ffffff;
+  color: rgba(0, 0, 0, 0.5);
   border: none;
   border-radius: 1rem;
   padding: 1rem 2rem;
   font-size: 1.25em;
   font-weight: bold;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .playerindicator, .opponentindicator {
+    width: 4em;
+    height: 8em;
+  }
+
+  .playerindicator {
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
+    transform: rotate(180deg);
+  }
+
+  .opponentindicator {
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
+  }
 }

@@ -12,6 +12,7 @@
 
 .opponentstore, .playerstore {
   background: #c6b890;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,16 +40,17 @@
 }
 
 .playeroutline {
-  outline: 0.05em solid #87bdff;
+  outline: 0.1rem solid #87bdff;
 }
 
 .opponentoutline {
-  outline: 0.05em solid #ff7070;
+  outline: 0.1rem solid #ff7070;
 }
 
 .pit {
   background: #c6b890;
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   height: 6rem;
@@ -56,4 +58,45 @@
   font-size: 3em;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.button {
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  font-weight: bold;
+  border: none;
+  width: 2em;
+  height: 2em;
+  font-size: 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.button:nth-of-type(1) {
+  bottom: 0;
+  left: 0;
+}
+
+.button:nth-of-type(2) {
+  bottom: 0;
+  right: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .opponentstore, .playerstore {
+    height: 4rem;
+    border-radius: 2rem;
+    font-size: 2em;
+  }
+
+  .pit {
+    height: 4rem;
+    width: 4rem;
+    font-size: 2em;
+  }
+
+  .button {
+    font-size: 0.75rem;
+  }
 }
