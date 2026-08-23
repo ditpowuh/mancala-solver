@@ -16,7 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Setup Emscripten
+      - name: Set up Emscripten
         uses: emscripten-core/setup-emsdk@v16
         with:
           version: 6.0.8
@@ -27,12 +27,12 @@ jobs:
 
       - name: Move Emscripten WASM output to interface assets
         run: |
-          mkdir -p ./interface/src/assets/WASM/
+          mkdir -p "./interface/src/assets/WASM/"
           mv "./src/cpp/mancala.mjs" "./interface/src/assets/WASM/mancala.mjs"
           mv "./src/cpp/mancala.d.ts" "./interface/src/assets/WASM/mancala.d.ts"
           mv "./src/cpp/mancala.wasm" "./interface/src/assets/WASM/mancala.wasm"
 
-      - name: Setup Node.JS
+      - name: Set up Node.JS
         uses: actions/setup-node@v7
         with:
           node-version: 24
@@ -52,4 +52,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy interface/dist --project-name=mancala-solver
+          command: pages deploy interface/dist --project-name=mancala-solver --commit-dirty=true
